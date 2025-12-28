@@ -10,8 +10,7 @@ import pandas as pd
 # Exemple minimal (à ajuster)
 GAME_IDS = [
     "0022300061",  # exemple
-    "0022300062",
-]
+    ]
 
 PLAYER_MAP = {
     "Victor Wembanyama": "W",
