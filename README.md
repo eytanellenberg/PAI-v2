@@ -1,2 +1,8 @@
-# PAI-v2
-Athlete-level causal performance and readiness attribution across sports (soccer, basketball, endurance), designed for professional clubs.
+# PAI v2
+
+Work in progress.
+
+This repository contains ongoing research on athlete-level performance and readiness analysis
+using advanced attribution methods across multiple sports.
+
+Details, methods, and data sources will be disclosed at a later stage.
