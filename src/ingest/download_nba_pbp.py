@@ -13,7 +13,7 @@ def download_game_pbp(game_id: str) -> pd.DataFrame:
     return df
 
 
-def download_games(game_ids: list[str], sleep: float = 0.6) -> pd.DataFrame:
+def download_games(game_ids, sleep: float = 0.6) -> pd.DataFrame:
     frames = []
     for gid in game_ids:
         print(f"Downloading {gid}")
