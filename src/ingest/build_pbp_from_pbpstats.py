@@ -2,35 +2,28 @@ import os
 import pandas as pd
 
 from pbpstats.client import Client
-from pbpstats.resources.settings import (
-    NBASettings,
-    DATA_NBA_ENDPOINT
-)
+from pbpstats.resources.settings import NBASettings
+from pbpstats.resources.data_providers import DataNBAProvider
 
-# --- pbpstats settings (REQUIRED) ---
-settings = NBASettings(
-    data_provider=DATA_NBA_ENDPOINT
-)
-
+# --- REQUIRED pbpstats settings ---
+settings = NBASettings(data_provider=DataNBAProvider)
 client = Client(settings)
 
-# --- single test game ---
 GAME_ID = "0022300061"
 
 game = client.Game(game_id=GAME_ID)
 
 rows = []
-
 for event in game.play_by_play:
     rows.append({
         "game_id": GAME_ID,
         "period": event.period,
         "clock": event.clock,
         "event_type": event.event_type,
-        "points": event.points if event.points else 0,
-        "player_id": event.player_id if event.player_id else "other",
+        "points": event.points or 0,
+        "player_id": event.player_id or "other",
         "score_diff": event.score_margin,
-        "home": 1 if event.team_id == game.home_team_id else 0
+        "home": int(event.team_id == game.home_team_id)
     })
 
 df = pd.DataFrame(rows)
@@ -38,5 +31,5 @@ df = pd.DataFrame(rows)
 os.makedirs("data/raw/basket", exist_ok=True)
 df.to_csv("data/raw/basket/pbp.csv", index=False)
 
-print("Saved data/raw/basket/pbp.csv")
+print("✅ Saved data/raw/basket/pbp.csv")
 print(df.head())
