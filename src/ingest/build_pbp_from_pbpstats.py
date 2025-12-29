@@ -3,12 +3,12 @@ import pandas as pd
 
 from pbpstats.client import Client
 from pbpstats.resources.settings import NBASettings
-from pbpstats.resources.data_providers import DataNBAProvider
 
-# --- REQUIRED pbpstats settings ---
-settings = NBASettings(data_provider=DataNBAProvider)
+# REQUIRED: settings object
+settings = NBASettings()
 client = Client(settings)
 
+# One test game (NBA 2023-24)
 GAME_ID = "0022300061"
 
 game = client.Game(game_id=GAME_ID)
